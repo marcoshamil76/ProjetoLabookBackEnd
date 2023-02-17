@@ -16,7 +16,7 @@ export interface LoginInputDTO{
 }
 
 export interface LoginOutputDTO{
-    token: string
+    token: string |undefined
 }
 
 export interface GetPostInputDTO{
