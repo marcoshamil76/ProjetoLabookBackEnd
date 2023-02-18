@@ -18,6 +18,7 @@ export class UserController {
             res.status(201).send(output)
             
         } catch (error) {
+            console.log(error)
             if(error instanceof BaseError){
                 res.status(error.statusCode).send(error.message)
             }else{
@@ -37,6 +38,7 @@ export class UserController {
             res.status(200).send(output)
             
         } catch (error) {
+            console.log(error)
             if(error instanceof BaseError){
                 res.status(error.statusCode).send(error.message)
             }else{

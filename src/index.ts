@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import {userRouter} from "./router/userRouter"
+import { postRouter } from './router/postRouter'
 
 dotenv.config()
 const app = express()
@@ -14,6 +15,7 @@ app.listen(Number(process.env.PORT),()=>{
 })
 
 app.use("/users", userRouter)
+app.use("/posts", postRouter)
 
 
 // app.get ("/ping", async (req:Request,res:Response)=>{

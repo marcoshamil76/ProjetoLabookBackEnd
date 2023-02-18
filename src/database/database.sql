@@ -37,9 +37,9 @@ SELECT * FROM posts;
 
 SELECT * FROM likes_dislikes;
 
-DROP TABLE users;
-DROP TABLE posts;
-DROP TABLE likes_dislikes;
+-- DROP TABLE users;
+-- DROP TABLE posts;
+-- DROP TABLE likes_dislikes;
 
 INSERT INTO users (id,name,email,password,role)
 VALUES
@@ -62,3 +62,5 @@ VALUES
         (4,"p001",0),
         (1,"p003",1),
         (2,"p004",1);
+
+DELETE FROM users WHERE name = "Karol Woytila";

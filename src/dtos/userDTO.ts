@@ -23,7 +23,7 @@ export interface GetPostInputDTO{
     token: string | undefined
 }
 
-export type GetPosOutputDTO = PostModel[]
+export type GetPostOutputDTO = PostModel[]
 
 export interface CreatePostInputDTO {
     token: string | undefined
