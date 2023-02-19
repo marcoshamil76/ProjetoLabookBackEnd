@@ -11,7 +11,7 @@ export interface TokenPayload {
 
 export interface PostModel {
     id: string,
-    name: string,
+    content: string,
     likes: number,
     dislikes: number,
     createdAt: string,
@@ -25,7 +25,7 @@ export interface PostModel {
 export interface PostDB {
     id: string,
     creator_id: string,
-    name: string,
+    content: string,
     likes: number,
     dislikes: number,
     created_at: string,
