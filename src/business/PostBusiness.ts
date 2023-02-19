@@ -1,12 +1,12 @@
 import { PostDatabase } from "../database/PostDatabase";
-import { CreatePostInputDTO, EditPostInputDTO, GetPostInputDTO, GetPostOutputDTO } from "../dtos/userDTO";
+import { CreatePostInputDTO, DeletePostInputDTO, EditPostInputDTO, GetPostInputDTO, GetPostOutputDTO } from "../dtos/userDTO";
 import { BadRequestError } from "../errors/BadRequestError";
 import { NotFoundError } from "../errors/NotFoundError";
 import { Post } from "../models/Post";
 import { HashManager } from "../services/HashManager";
 import { IdGenerator } from "../services/IdGenerator";
 import { TokenManager } from "../services/TokenManager";
-import { PostDB, postWithCreatorDB } from "../types";
+import { PostDB, postWithCreatorDB, USER_ROLES } from "../types";
 
 export class PostBusiness{
     constructor (
@@ -124,6 +124,36 @@ export class PostBusiness{
 
         const updatedPostDB = post.toDBModel()
         await this.postDatabase.update(idToEdit, updatedPostDB)
+      
+    }
+
+    public deletePost = async (input: DeletePostInputDTO): Promise<void> =>{
+        const {idToDelete, token} = input
+
+        if(!token){
+            throw new BadRequestError("'token' ausente")
+        }
+        const payload = this.tokenManager.getPayload(token)
+
+        if(payload === null){
+            throw new BadRequestError("token inválido")
+        }
+       
+
+        const postDB = await this.postDatabase.findById(idToDelete)
+
+        if(!postDB){
+            throw new NotFoundError("'id' não localizado")
+        }
+        const creatorId = payload.id
+
+        if(payload.role !== USER_ROLES.ADMIN && postDB.creator_id !== payload.id){
+            throw new BadRequestError("Somente Admins ou o Autor pode deletar o Post")
+        }
+
+
+        
+        await this.postDatabase.deleteById(idToDelete)
       
     }
 }
