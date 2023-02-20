@@ -33,6 +33,28 @@ export class Post {
         this.likes = value
     }
 
+    public addLikes(){
+        this.likes += 1
+    }
+
+    public removeLikes(){
+        this.likes -= 1
+    }
+
+    public addDislikes(){
+        this.dislikes += 1
+    }
+
+    public removeDislikes(){
+        // if(this.dislikes === 0){
+        //     this.dislikes = 0
+        // }else{
+
+        //     this.dislikes -= 1
+        // }
+        this.dislikes -=1
+    }
+
     public getDislikes(): number {
         return this.dislikes
     }
