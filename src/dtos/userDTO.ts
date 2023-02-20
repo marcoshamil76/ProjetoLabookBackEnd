@@ -16,23 +16,24 @@ export interface LoginInputDTO{
 }
 
 export interface LoginOutputDTO{
-    token: string
+    token: string |undefined
 }
 
 export interface GetPostInputDTO{
     token: string | undefined
 }
 
-export type GetPosOutputDTO = PostModel[]
+export type GetPostOutputDTO = PostModel[]
 
 export interface CreatePostInputDTO {
-    token: string | undefined
+    token: string | undefined,
+    content: string
 }
 
 export interface EditPostInputDTO{
     idToEdit: string,
     token: string | undefined,
-    name: unknown
+    content: unknown
 }
 
 export interface DeletePostInputDTO{

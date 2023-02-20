@@ -3,7 +3,7 @@ import { PostDB, PostModel } from "../types";
 export class Post {
     constructor(
         private id: string,
-        private name: string,
+        private content: string,
         private likes: number,
         private dislikes: number,
         private createdAt: string,
@@ -19,11 +19,11 @@ export class Post {
         this.id = value
     }
 
-    public getName(): string {
-        return this.name
+    public getContent(): string {
+        return this.content
     }
-    public setName(value: string): void{
-        this.name = value
+    public setContent(value: string): void{
+        this.content = value
     }
 
     public getLikes(): number {
@@ -31,6 +31,28 @@ export class Post {
     }
     public setLikes(value: number): void{
         this.likes = value
+    }
+
+    public addLikes(){
+        this.likes += 1
+    }
+
+    public removeLikes(){
+        this.likes -= 1
+    }
+
+    public addDislikes(){
+        this.dislikes += 1
+    }
+
+    public removeDislikes(){
+        // if(this.dislikes === 0){
+        //     this.dislikes = 0
+        // }else{
+
+        //     this.dislikes -= 1
+        // }
+        this.dislikes -=1
     }
 
     public getDislikes(): number {
@@ -72,7 +94,7 @@ export class Post {
         return{
             id: this.id,
             creator_id: this.creatorId,
-            name: this.name,
+            content: this.content,
             likes: this.likes,
             dislikes: this.dislikes,
             created_at: this.createdAt,
@@ -82,7 +104,7 @@ export class Post {
     public toBusinessModel(): PostModel{
         return{
                 id: this.id,
-                name: this.name,
+                content: this.content,
                 likes: this.likes,
                 dislikes: this.dislikes,
                 createdAt: this.createdAt,
